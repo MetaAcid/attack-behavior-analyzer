@@ -9,3 +9,7 @@ def train_model(data):
 
 def predict(model, data):
     return model.predict(data)
+
+
+def anomaly_scores(model, data):
+    return model.decision_function(data)
