@@ -7,6 +7,7 @@ from feature_engineering import prepare_features
 from model import train_model, predict, anomaly_scores
 from detector import detect_anomalies
 from reporter import save_results, print_results, build_summary, save_enriched_csv
+from visualizer import save_anomaly_plot
 
 
 def main():
@@ -27,6 +28,11 @@ def main():
         "--csv-output",
         default="output/enriched_results.csv",
         help="Path to enriched CSV output"
+    )
+    parser.add_argument(
+        "--plot-output",
+        default="output/anomaly_plot.png",
+        help="Path to output plot image"
     )
 
     args = parser.parse_args()
@@ -63,6 +69,11 @@ def main():
 
         print(f"\nJSON report saved to: {output_path}")
         print(f"CSV report saved to: {csv_output_path}")
+        plot_output_path = Path(args.plot_output)
+        plot_output_path.parent.mkdir(parents=True, exist_ok=True)
+        save_anomaly_plot(df, str(plot_output_path))
+
+        print(f"Plot saved to: {plot_output_path}")
         return 0
 
     except FileNotFoundError as error:
