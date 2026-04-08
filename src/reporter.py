@@ -22,6 +22,10 @@ def save_results(report, path):
         json.dump(report, f, indent=4, ensure_ascii=False)
 
 
+def save_enriched_csv(df, path):
+    df.to_csv(path, index=False)
+
+
 def print_results(results):
     print("\n=== ANOMALIES DETECTED ===")
     print("=" * 30)
@@ -36,5 +40,6 @@ def print_results(results):
         print(f"Failed logins: {r['failed_logins']}")
         print(f"Unique paths: {r['unique_paths']}")
         print(f"Time between requests: {r['time_between_requests']}")
+        print(f"Anomaly score: {r['anomaly_score']}")
         print(f"Risk level: {r['risk_level']}")
         print(f"Description: {r['description']}")
