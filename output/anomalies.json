@@ -1,0 +1,10 @@
+[
+    {
+        "ip": "192.168.1.14",
+        "requests": 300,
+        "failed_logins": 50,
+        "unique_paths": 80,
+        "time_between_requests": 0.05,
+        "description": "Potentially anomalous behavior based on traffic volume, failed logins, and request patterns"
+    }
+]
